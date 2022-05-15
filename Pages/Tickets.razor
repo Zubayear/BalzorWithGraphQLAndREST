@@ -1,0 +1,49 @@
+@page "/tickets"
+@using BlazorExp.Data
+@using BlazorExp.Entity
+
+<PageTitle>Tickets</PageTitle>
+
+@inject TicketsService TicketsService
+
+<h1>Tickets</h1>
+
+<p>See the match tickets.</p>
+
+@if (tickets == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Match</th>
+                <th>Time</th>
+                <th>Price</th>
+                <th>Stadium</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in tickets)
+            {
+                <tr>
+                    <td>@ticket.TicketName</td>
+                    <td>@ticket.MatchTime</td>
+                    <td>@ticket.TicketPrice.ToString("c")</td>
+                    <td>@ticket.Stadium</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code{
+        private IEnumerable<Ticket>? tickets { get; set; }
+
+        protected override async Task OnInitializedAsync()
+        {
+            tickets = await TicketsService.GetTickets();
+        }
+}

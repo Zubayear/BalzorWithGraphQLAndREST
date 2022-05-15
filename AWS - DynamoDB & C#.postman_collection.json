@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "0e01f670-1b4f-49d2-9c9c-5c22863b06fb",
+		"name": "AWS - DynamoDB & C#",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ticketName\": \"UEFA EUROPA LEAGUE FINAL 2022: Eintracht Frankfurt v Rangers FC\",\n    \"ticketPrice\": 1299.00,\n    \"stadium\": \"Estadio R. Sánchez Pizjuán, Sevilla, Spain\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7177/api/tickets",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7177",
+					"path": [
+						"api",
+						"tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ticket with partition key",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7177/api/tickets/2a5c36e7-fa54-47c1-8c37-2d053e1eaed5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7177",
+					"path": [
+						"api",
+						"tickets",
+						"2a5c36e7-fa54-47c1-8c37-2d053e1eaed5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Ticket with partition key",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7177/api/tickets/d488b97d-9ec6-434c-bec4-feb23e2e99c2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7177",
+					"path": [
+						"api",
+						"tickets",
+						"d488b97d-9ec6-434c-bec4-feb23e2e99c2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Ticket with partition key Copy",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ticketName\": \"FA CUP FINAL 2022: Liverpool v Chelsea Tickets\",\n    \"ticketPrice\": 265.00,\n    \"stadium\": \"Wembley Stadium, London, United Kingdom\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:7177/api/tickets/2a5c36e7-fa54-47c1-8c37-2d053e1eaed5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7177",
+					"path": [
+						"api",
+						"tickets",
+						"2a5c36e7-fa54-47c1-8c37-2d053e1eaed5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all entries",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7177/api/tickets",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7177",
+					"path": [
+						"api",
+						"tickets"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

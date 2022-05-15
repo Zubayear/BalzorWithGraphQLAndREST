@@ -1,0 +1,49 @@
+@page "/create-tickets"
+@using Microsoft.Extensions.Logging
+@using BlazorExp.Data
+@using BlazorExp.Entity
+@using System.Globalization
+@inject ILogger<Ticket> Logger
+@inject TicketsService TicketsService
+
+<PageTitle>Create ticket</PageTitle>
+
+
+<form class="row g-3">
+    <div class="col-md-6">
+        <label for="ticketName" class="form-label">Match</label>
+        <input @bind="TicketName" type="text" class="form-control" id="ticketName" placeholder="Match">
+    </div>
+    <div class="col-md-6">
+        <label for="ticketPrice" class="form-label">Price</label>
+        <input @bind="TicketPrice" type="number" class="form-control" id="ticketPrice" placeholder="Price">
+    </div>
+    <div class="col-12">
+        <label for="stadium" class="form-label">Stadium</label>
+        <input @bind="Stadium" type="text" class="form-control" id="stadium" placeholder="Stadium">
+    </div>
+    <div class="col-12">
+        <button @onclick="HandleValidSubmit" type="submit" class="btn btn-primary">Create Ticket</button>
+    </div>
+</form>
+
+@code {
+
+    private string? TicketName { get; set; }
+    private decimal TicketPrice { get; set; }
+    private string? Stadium { get; set; }
+    
+    private async Task HandleValidSubmit()
+    {
+        var ticket = new Ticket()
+        {
+            Id = Guid.NewGuid().ToString(),
+            MatchTime = DateTimeOffset.Now.LocalDateTime.ToString(CultureInfo.CurrentCulture),
+            Stadium = this.Stadium,
+            TicketName = TicketName,
+            TicketPrice = TicketPrice
+        };
+        await TicketsService.SaveTicket(ticket);
+    }
+
+}
